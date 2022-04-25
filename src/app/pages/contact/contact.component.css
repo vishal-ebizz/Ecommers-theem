@@ -1,0 +1,14 @@
+.abcd{
+    width: 49%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+.button2{
+	background-color: #F28123; width: 160px;
+	height: 45px;
+    margin-left:295px; 
+    color: white;
+     border-radius: 50px;
+     margin-top :25px;
+}

@@ -1,0 +1,123 @@
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 offset-lg-2 text-center">
+				<div class="breadcrumb-text">
+					<p>Fresh and Organic</p>
+					<h1>Cart</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- end breadcrumb section -->
+
+<!-- cart -->
+<div class="cart-section mt-150 mb-150">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 col-md-12">
+				<span *ngIf="totalrows == 0">
+					<h4 style=" color: #F28123;
+							text-align: center;   color: #F28123; size: 45px;
+								text-align: center;font-weight: bolder; 
+								"> Your cart is empty!</h4>
+
+					<img src="https://rukminim1.flixcart.com/www/800/800/promos/16/05/2019/d438a32e-765a-4d8b-b4a6-520b560971e8.png?q=90"
+						alt="">
+					<a routerLink="/shop" class="boxed-btn black"
+						style="  margin-left: 326px;width: 150px;height: 50px;text-align: center;text-decoration: none;font-weight: bold;">Buy
+						Now
+					</a>
+				</span>
+
+				<div class="cart-table-wrap" #elseBlockShow *ngIf="items && items.length > 0">
+					<table class="cart-table">
+						<thead class="cart-table-head">
+							<tr class="table-head-row">
+								<th class="product-remove"></th>
+								<th class="product-image">Product Image</th>
+								<th class="product-name">Name</th>
+								<th class="product-price">Price</th>
+								<th class="product-quantity">Quantity</th>
+								<th>Total</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr class="table-body-row" *ngFor="let item of items">
+								<td class="product-remove"><button style="border: none;"><i class="far fa-window-close"
+											(click)="deleteproduct(item.id)"></i></button></td>
+								<td class="product-image"><img src={{item.image}} alt=""></td>
+								<td class="product-name">{{item.name}}</td>
+								<td class="product-price">{{item.price}}</td>
+								<td class="product-quantity"><input type="number" value="{{item.quantity}}" min="1"
+										(change)="isUpdateQuantity($event)"></td>
+								<td class="product-total">{{item.price * item.quantity}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+
+			<div class="col-lg-4">
+				<div class="total-section">
+					<table class="total-table">
+						<thead class="total-table-head">
+							<tr class="table-total-row">
+								<th>Total</th>
+								<th>Price</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="total-data">
+								<td><strong>Subtotal: </strong></td>
+								<td id="isTotal"></td>
+							</tr>
+							<tr class="total-data">
+								<td><strong>Shipping: </strong></td>
+								<td>{{shipping_vaue}}</td>
+							</tr>
+							<tr class="total-data">
+								<td><strong>Total: </strong></td>
+								<td style="font-weight: bold ;" id="gross-total"></td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="cart-buttons">
+
+						<a routerLink="/checkout" class="boxed-btn black" style="    margin-left: 96px;
+						width: 150px;
+						height: 50px;
+						text-align: center;
+						text-decoration: none;
+						font-weight: bold;">Check Out</a>
+					</div>
+				</div>
+
+				<div class="coupon-section">
+					<h3>Apply Coupon</h3>
+					<div class="coupon-form-wrap">
+						<form [formGroup]="applyCouponForm" (ngSubmit)="onSubmit()">
+							<input type="text" formControlName="coupon" placeholder="Enter Coupon Number" required=""
+								style="width: 355px; margin-bottom:20px" class="form-control form-control-lg"
+								[ngClass]="{ 'is-invalid': submitted && f['coupon'].errors }">
+							<div *ngIf="submitted && f['coupon'].errors" class="invalid-feedback"
+								style="margin-top: -4%;">
+								<span *ngIf="f['coupon'].errors['required']" style="font-size: large;">Please Enter
+									Coupon Number</span>
+							</div>
+							<p><input type="submit" value="Apply"
+									style="width: 160px ; height: 52px; margin-left: 95px;color: white"></p>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- end cart -->
+<!-- logo carousel -->
+<app-logo-slider></app-logo-slider>
